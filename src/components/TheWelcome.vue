@@ -25,11 +25,12 @@ export default {
           "messages": [message],
           //'prompt': msg.value,
           "format": "json",
-          "stream": false,
+          "stream": !false,
         },
         {signal});
-        console.log(res.data.message.content);
-        response.value = res.data.message.content
+        ////console.log(res.data.message.content);
+        response.value = res
+        console.log(response.value)
       } catch(errors){
         console.log(errors)
       }
@@ -51,16 +52,16 @@ const tryChat = async () =>{
   msg.value = prompt.value;
   prompt.value ="";
   const message = { role: 'user', content: msg.value };
-  const res = await ollama.chat({model:'ai-doctor', messages : [message], stream: false })
+  const res = await ollama.chat({model:'ai-doctor', messages : [message], stream: !false })
   //const res = await ollama.generate({model:'tinyllama', prompt: msg.value, stream: false, raw: true })
-  response.value = res.message.content || "something went wrong"
+  //response.value = res.message.content || "something went wrong"
 
-  console.log(res.message.content)
-  /*for await (var part of response) {
-    response.value += part.message.content;
+  //console.log(res.message.content)
+  for await (var part of res) {
+    //response.value += part.message.content;
 
     console.log(part.message.content)
-  }*/
+  }
   disable.value = false;
 }
 
@@ -94,10 +95,10 @@ const copyQ = () => {
 </script>
 
 <template>
-  <div class="col-12 my-2">
+  <!--div class="col-12 my-2">
     <h2 class="text-warning text-center">Baun Education</h2>
     <h3 class="text-light text-center">AI Tutor and Teacher Assistant</h3>
-  </div>
+  </div-->
   <div 
   v-show="disable"
   class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
