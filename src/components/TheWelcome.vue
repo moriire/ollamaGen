@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import ollama from 'ollama';
+import TTS from 'text-to-speech-offline';
 
 import { ref } from 'vue';
 export default {
@@ -52,24 +53,26 @@ const tryChat = async () =>{
   msg.value = prompt.value;
   prompt.value ="";
   const message = { role: 'user', content: msg.value };
-  const res = await ollama.chat({model:'ai-doctor', messages : [message], stream: !false })
+  const res = await ollama.chat({model:'ai-doctor', messages : [message], stream: false })
   //const res = await ollama.generate({model:'tinyllama', prompt: msg.value, stream: false, raw: true })
-  //response.value = res.message.content || "something went wrong"
+  response.value = res.message.content || "something went wrong"
 
   //console.log(res.message.content)
-  for await (var part of res) {
+  //for await (var part of res) {
     //response.value += part.message.content;
 
-    console.log(part.message.content)
-  }
+    //console.log(part.message.content)
+  //}
   disable.value = false;
 }
+const tts = () =>{
+  TTS(response.value, {language: "english", volume:1, rate:1, pitch: 1})
+};
 
 const clearOutput = async () => {
   response.value = "";
   alert("cleared!!!")
 }
-
 
 const copyOutput = () => {
   let res = document.getElementById("cop")
@@ -88,7 +91,7 @@ const copyQ = () => {
   alert("Copied to clipboard");
 }
     return{
-        getChat, msg, prompt, response, disable, tryChat, clearOutput, copyOutput, stopGen, copyQ
+        getChat, msg, prompt, response, disable, tryChat, clearOutput, copyOutput, stopGen, copyQ, tts
       }
   }    
 }
@@ -145,10 +148,14 @@ const copyQ = () => {
 </div>
 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2 position-sticky .start-50 bottom-0 .translate-middle-x">
       <div class="input-group my-4">
-      
+        <button class="input-group-text bg-warning text-dark" id="basic" @click="tts()">
+          <i class="bi bi-mic-fill"></i>
+        <!--span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
+        </span-->
+      </button>
         <input class="form-control" aria-describedby="basic" 
         placeholder="Student or Teacher? BaunBot can help" v-model="prompt"  @keyup.enter="getChat()">
-        <button class="input-group-text bg-warning text-dark" id="basic" @click="getChat()">Go
+        <button class="input-group-text bg-warning text-dark" id="basic" @click="tryChat()">Go
         <!--span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
         </span-->
       </button>

@@ -1,6 +1,6 @@
 <script setup>
 import {
-  //RouterLink, 
+  RouterLink, 
   RouterView
 } from 'vue-router'
 </script>
@@ -8,28 +8,42 @@ import {
 <template>
 
   <div class="container">
-    <nav class="navbar sticky-top">
+    <nav class="navbar sticky-top mb-3">
       <div class="container-fluid">
-        <a class="navbar-brand text-warning" href="#">ollamaGen</a>
-        <button class="navbar-toggler text-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        <a class="navbar-brand text-warning" href="#">
+          <h2>ollamaGen</h2>
+
+          </a>
+        <button class="navbar-toggler text-warning bg-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon text-warning"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ollamaGen</h5>
+            <h2 class="offcanvas-title" id="offcanvasNavbarLabel">ollamaGen</h2>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <RouterLink to="/" class="nav-link active" aria-current="page">
+                  Home
+                </RouterLink>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Settings</a>
+                <RouterLink to="/settings" class="nav-link" >
+                  Settings
+                </RouterLink>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Models</a>
+                <RouterLink to="/models" class="nav-link" >
+                  Models
+                </RouterLink>
+              </li>
+              <li class="nav-item">
+                <RouterLink to="/voice" class="nav-link" >
+                  Voice
+                </RouterLink>
               </li>
               <!--li class="nav-item">
             <a class="nav-link" href="#">Link</a>

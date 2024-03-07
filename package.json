@@ -17,6 +17,7 @@
     "bootstrap-icons": "^1.11.3",
     "ollama": "^0.4.9",
     "pinia": "^2.1.7",
+    "text-to-speech-offline": "^1.0.1",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },
