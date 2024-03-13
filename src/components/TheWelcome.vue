@@ -20,6 +20,42 @@ export default {
       const message = { role: 'user', content: msg.value };
       
       try{
+        const res = await axios.post('http://127.0.0.1:11434/api/chat', 
+          {
+          'model': 'tinyllama:latest',
+          "messages": [message],
+          //'prompt': msg.value,
+          "stream": !false,
+        },
+        {signal}
+        );
+        
+        //console.log(res.data)
+        
+        const reader = res.data.message.getReader();
+        const decoder = new TextDecoder();
+        const stream = async () => {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+              // Stream ended
+              disable.value = false;
+              break;
+            }
+            // Handle each chunk of data
+            //console.log(value)
+            const chunk = decoder.decode(value);
+            //const  val = JSON.parse(chunk)
+            const resp = chunk.message//.content;
+            console.log(JSON.stringify(chunk.message))
+            response.value += resp;//JSON.stringify(val)//.content.toString();//.toString();// || JSON.parse(val).message.system.toString()//.system
+            console.log(response.value)
+            disable.value = true;
+          }
+        };
+         stream();
+         
+        /*
         const res = await axios.post('http://127.0.0.1:11434/api/chat',
         {
           'model': 'ai-doctor',
@@ -28,10 +64,11 @@ export default {
           "format": "json",
           "stream": !false,
         },
-        {signal});
-        ////console.log(res.data.message.content);
-        response.value = res
-        console.log(response.value)
+        {responseType: "stream", signal: signal},
+      );
+      */
+      //response.value = res.data.message.content
+        //console.log(res.data)
       } catch(errors){
         console.log(errors)
       }
@@ -47,26 +84,26 @@ export default {
     }
   };
    
-    
 const tryChat = async () =>{
   disable.value = true;
   msg.value = prompt.value;
   prompt.value ="";
+  controller = new AbortController();
+      const signal = controller.signal;
   const message = { role: 'user', content: msg.value };
-  const res = await ollama.chat({model:'ai-doctor', messages : [message], stream: false })
+  const res = await ollama.chat({model:'ai-doctor', messages : [message], stream: !false }, {signal})
   //const res = await ollama.generate({model:'tinyllama', prompt: msg.value, stream: false, raw: true })
-  response.value = res.message.content || "something went wrong"
-
+  //response.value = res.message.content || "something went wrong"
+  console.log(res)
   //console.log(res.message.content)
-  //for await (var part of res) {
-    //response.value += part.message.content;
-
-    //console.log(part.message.content)
-  //}
+  for await (var part of res) {
+    response.value += part.message.content.toString();
+    console.log(part.message.content)
+  }
   disable.value = false;
 }
-const tts = () =>{
-  TTS(response.value, {language: "english", volume:1, rate:1, pitch: 1})
+const tts = () => {
+  TTS(response.value || 'nothing to talk about', {language: "english", volume:1, rate:1, pitch: 1})
 };
 
 const clearOutput = async () => {
@@ -117,8 +154,7 @@ const copyQ = () => {
           <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
         </span>
       </button>
-        
-
+      
       </div>
      </div>
   </div>
@@ -150,12 +186,12 @@ const copyQ = () => {
       <div class="input-group my-4">
         <button class="input-group-text bg-warning text-dark" id="basic" @click="tts()">
           <i class="bi bi-mic-fill"></i>
-        <!--span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
+        <!--span class="spinner-border] spinner-border-sm" aria-hidden="true" v-show="disable">
         </span-->
       </button>
         <input class="form-control" aria-describedby="basic" 
         placeholder="Student or Teacher? BaunBot can help" v-model="prompt"  @keyup.enter="getChat()">
-        <button class="input-group-text bg-warning text-dark" id="basic" @click="tryChat()">Go
+        <button class="input-group-text bg-warning text-dark" id="basic" @click="getChat()">Go
         <!--span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
         </span-->
       </button>
