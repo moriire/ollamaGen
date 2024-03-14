@@ -15,6 +15,8 @@
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "dayjs": "^1.11.10",
+    "moment": "^2.30.1",
     "ollama": "^0.4.9",
     "pinia": "^2.1.7",
     "text-to-speech-offline": "^1.0.1",

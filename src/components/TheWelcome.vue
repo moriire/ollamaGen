@@ -23,10 +23,14 @@ export default {
       try{
         const res = await axios.post('http://127.0.0.1:11434/api/chat', 
           {
-          'model': 'tinyllama:latest',
+          'model': 'ai-doctor',
           "messages": [message],
           //'prompt': msg.value,
           "stream": false,
+          "options": {
+              "seed": 101,
+              "temperature": 0
+            }
         },
         {signal}
         );
@@ -172,7 +176,12 @@ const copyQ = () => {
     <button class="btn btn-outline-warning" v-show="disable" @click="stopGen">Stop generating...</button>
     <button title="Copy response to clipboard"  data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-outline-warning" @click="copyOutput" v-show="response" >Copy</button>
     <button class="btn btn-outline-warning" @click="clearOutput" v-show="response">Clear</button>
-    {{ total_duration }}  
+     
+  </div>
+  <div>
+    <h2 class="text-light">
+      {{ total_duration }} 
+    </h2>
   </div>
   <!--div class="dropdown">
   <button class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

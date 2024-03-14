@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/models',
       name: 'models',
-      component: SettingsView
+      component: ModelsView
     },
     {
       path: '/voice',

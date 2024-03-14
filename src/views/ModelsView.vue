@@ -1,73 +1,22 @@
 <script>
 import axios from 'axios';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import moment from 'moment';
+
 export default {
   setup(){
-    let controller;
     const disable = ref(false);
-    const prompt = ref("");
-    const msg = ref('');
-    const response = ref("");
-    const getChat = async () =>{
+    const chosen_model = ref("");
+    const progress = ref("");
+    const models = ref([]);
+    const formatdate = (x) => {
+      return moment(x, moment.ISO_8601).fromNow()
+    }
+    const getModels = async () =>{
       disable.value = true;
-      msg.value = prompt.value;
-      prompt.value ="";
-      controller = new AbortController();
-      const signal = controller.signal;
-      const message = { role: 'user', content: msg.value };
-      
       try{
-        const res = await axios.get('http://127.0.0.1:11434/api/tags', 
-          {
-          'model': 'tinyllama',
-          "messages": [message],
-          //'prompt': msg.value,
-          "format": "json",
-          "stream": false,
-          "options": {
-              "seed": 101,
-              "temperature": 0
-            }
-        },
-        {signal}
-        );
-        /*
-        const reader = res.body.getReader();
-        const decoder = new TextDecoder();
-        const stream = async () => {
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) {
-              // Stream ended
-              disable.value = false;
-              break;
-            }
-            // Handle each chunk of data
-            //console.log(value)
-            const chunk = decoder.decode(value);
-            const  val = JSON.parse(chunk)
-            const resp = val.filter(x=>x.message.content)
-            console.log(JSON.stringify(val))
-            response.value += resp;//JSON.stringify(val)//.content.toString();//.toString();// || JSON.parse(val).message.system.toString()//.system
-            console.log(response.value)
-            disable.value = true;
-          }
-        };
-         stream();
-         */
-        /*
-        const res = await axios.post('http://127.0.0.1:11434/api/chat',
-        {
-          'model': 'ai-doctor',
-          "messages": [message],
-          //'prompt': msg.value,
-          "format": "json",
-          "stream": !false,
-        },
-        {responseType: "stream", signal: signal},
-      );
-      */
-      response.value = res.data.message.content
+        const res = await axios.get('http://127.0.0.1:11434/api/tags');
+        models.value = res.data.models
         console.log(res.data)
       } catch(errors){
         console.log(errors)
@@ -76,42 +25,30 @@ export default {
         disable.value = false
       }
     }
-
-  const stopGen = () =>{
-    if (controller){
-      controller.abort();
-      alert("Chat Aborted!!!")
+    const pullModel = async () =>{
+      disable.value = true;
+      
+      try{
+        const res = await axios.post('http://127.0.0.1:11434/api/pull',
+        {
+           name: chosen_model.value,
+            insecure: true,
+            stream: !true,
+        })
+        progress.value = res.data.status
+        if(progress.value == "success"){
+          return getModels()
+        }
+      } catch(errors){
+        console.log(errors)
+      }
+      finally{
+        disable.value = false
+      }
     }
-  };
-   
-    
-const tryChat = async () =>{
-  disable.value = true;
-  msg.value = prompt.value;
-  prompt.value ="";
-  controller = new AbortController();
-      const signal = controller.signal;
-  const message = { role: 'user', content: msg.value };
-  const res = await ollama.chat({model:'ai-doctor', messages : [message], stream: !false }, {signal})
-  //const res = await ollama.generate({model:'tinyllama', prompt: msg.value, stream: false, raw: true })
-  //response.value = res.message.content || "something went wrong"
-  console.log(res)
-  //console.log(res.message.content)
-  for await (var part of res) {
-    response.value += part.message.content.toString();
-    console.log(part.message.content)
-  }
-  disable.value = false;
-}
-const tts = () => {
-  TTS(response.value || 'nothing to talk about', {language: "english", volume:1, rate:1, pitch: 1})
-};
-
-const clearOutput = async () => {
-  response.value = "";
-  alert("cleared!!!")
-}
-
+onMounted(()=>{
+  getModels()
+})
 const copyOutput = () => {
   let res = document.getElementById("cop")
   res.select();
@@ -128,75 +65,53 @@ const copyQ = () => {
   // Alert the copied text
   alert("Copied to clipboard");
 }
-    return{
-        getChat, msg, prompt, response, disable, tryChat, clearOutput, copyOutput, stopGen, copyQ, tts
+    return {
+      formatdate, getModels, models, disable, copyOutput, copyQ, pullModel, chosen_model, progress
       }
   }    
 }
 </script>
 
 <template>
-  <!--div class="col-12 my-2">
-    <h2 class="text-warning text-center">Baun Education</h2>
-    <h3 class="text-light text-center">AI Tutor and Teacher Assistant</h3>
-  </div-->
-  <div 
-  v-show="disable"
-  class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
-  <div class="row justify-content-end">
-    <div class="col-8">
-      <div class="input-group">
-        <button data-bs-toggle="tooltip" data-bs-placement="top"  title="Copy text to clipboard" class="input-group-text bg-warning text-dark" id="basic" @click="copyQ" >
-          <i class="bi bi-clipboard"></i>
-      </button>
-       <input disabled readonly class="form-control bg-dark text-warning" id="prompt-msg"
-        v-model="msg" />
-        <button class="input-group-text bg-warning text-dark" id="basic" @click="copyQ" >
-          <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
+    <h2 class="text-warning">
+      Pull Model
+    </h2>
+    <div class="form-group mb-3 input-group-text">
+      <input type="text" class="form-control" v-model="chosen_model">
+      <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
         </span>
+    </div>
+    <div class="form-group d-flex justify-content-between mb-3">
+      <h3 class="text-success">
+        {{ progress }}
+      </h3>
+      <button class="btn btn-warning" @click="pullModel">
+        Pull
       </button>
-      
-      </div>
-     </div>
-  </div>
-  </div>
-<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 mb-2">
+    </div>
     
-        <textarea disabled readonly class="form-control bg-dark text-light overflow-auto board" v-model="response" id="cop" >
-          
-        </textarea>
-</div> 
-<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2 d-flex justify-content-between" >
-  <div>
-    <button class="btn btn-outline-warning" v-show="disable" @click="stopGen">Stop generating...</button>
-    <button title="Copy response to clipboard"  data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-outline-warning" @click="copyOutput" v-show="response" >Copy</button>
-    <button class="btn btn-outline-warning" @click="clearOutput" v-show="response">Clear</button>
-  
   </div>
-  <!--div class="dropdown">
-  <button class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    theme
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Dark</a></li>
-    <li><a class="dropdown-item" href="#">Light</a></li>
-  </ul>
-</div-->
+<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
+  <h2 class="text-warning">
+    Installed
+  </h2>
+  <div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action .active mb-3" aria-current="true"
+  v-for="model in models" :key="model.digest"
+  >
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1" >{{ model.name }}</h5>
+      <small>{{ formatdate(model.modified_at) }}</small>
+    </div>
+    <div class="d-flex w-100 justify-content-between p-2">
+      <p class="mb-1">{{ model.details.parameter_size }}</p>
+    <!--small>{{ model }}</small-->
+      <span class=".badge .bg-warning text-warning rounded-pill">{{ (model.size/(1024*1024*1024)).toFixed(2) }} GB</span>
+    </div>
+    
+  </a>
 </div>
-<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2 position-sticky .start-50 bottom-0 .translate-middle-x">
-      <div class="input-group my-4">
-        <button class="input-group-text bg-warning text-dark" id="basic" @click="tts()">
-          <i class="bi bi-mic-fill"></i>
-        <!--span class="spinner-border] spinner-border-sm" aria-hidden="true" v-show="disable">
-        </span-->
-      </button>
-        <input class="form-control" aria-describedby="basic" 
-        placeholder="Student or Teacher? BaunBot can help" v-model="prompt"  @keyup.enter="getChat()">
-        <button class="input-group-text bg-warning text-dark" id="basic" @click="getChat()">Go
-        <!--span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
-        </span-->
-      </button>
-  </div>
 </div>
 </template>
 <style scoped>
