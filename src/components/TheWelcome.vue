@@ -8,6 +8,7 @@ export default {
   setup(){
     let controller;
     const disable = ref(false);
+    const total_duration = ref(0);
     const prompt = ref("");
     const msg = ref('');
     const response = ref("");
@@ -25,13 +26,13 @@ export default {
           'model': 'tinyllama:latest',
           "messages": [message],
           //'prompt': msg.value,
-          "stream": !false,
+          "stream": false,
         },
         {signal}
         );
         
         //console.log(res.data)
-        
+      /*  
         const reader = res.data.message.getReader();
         const decoder = new TextDecoder();
         const stream = async () => {
@@ -67,7 +68,8 @@ export default {
         {responseType: "stream", signal: signal},
       );
       */
-      //response.value = res.data.message.content
+      total_duration.value = res.data.prompt_eval_duration/60000000;
+      response.value = `${msg.value}:\n${res.data.message.content}`
         //console.log(res.data)
       } catch(errors){
         console.log(errors)
@@ -128,7 +130,7 @@ const copyQ = () => {
   alert("Copied to clipboard");
 }
     return{
-        getChat, msg, prompt, response, disable, tryChat, clearOutput, copyOutput, stopGen, copyQ, tts
+        getChat, msg, prompt, response, disable, tryChat, clearOutput, copyOutput, stopGen, copyQ, tts, total_duration
       }
   }    
 }
@@ -170,7 +172,7 @@ const copyQ = () => {
     <button class="btn btn-outline-warning" v-show="disable" @click="stopGen">Stop generating...</button>
     <button title="Copy response to clipboard"  data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-outline-warning" @click="copyOutput" v-show="response" >Copy</button>
     <button class="btn btn-outline-warning" @click="clearOutput" v-show="response">Clear</button>
-  
+    {{ total_duration }}  
   </div>
   <!--div class="dropdown">
   <button class="btn btn-outline-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
