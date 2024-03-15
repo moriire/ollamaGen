@@ -11,10 +11,8 @@ defineProps({
   <h2 class="title text-center text-light my-2">Text to Speech Settings</h2>
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
     <div class="input-group mb-3">
-      <label for="customRange3" class="form-label">
-        <h2>Volume</h2>
-      </label>
-      <input type="range" class="form-range" value="0.5" min="0" max="1" step="0.1" id="customRange3">
+      {{ vol }}
+<SliderControl v-model="vol" label="Volume"/>
     </div>
     <div class="input-group mb-3">
       <label for="customRange3" class="form-label">

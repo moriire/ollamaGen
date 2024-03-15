@@ -1,11 +1,24 @@
 <script setup>
 import SliderControl from "@/components/SliderControll.vue"
 import { ref } from "vue";
-const val = ref(0);
+const vol = ref(0);
+const rate = ref(1);
+const pitch = ref(1);
 </script>
 
 <template>
-<SliderControl v-model="val" />
+<div class="row">
+  <div class="col-lg-12 mb-4">
+    <SliderControl v-model="vol" label="Volume" :caliber="vol"/>
+  </div>
+  <div class="col-lg-6">
+    <SliderControl v-model="rate" label="Rate" :caliber="rate" :min="0" :max="1" :step="0.1" />
+  </div>
+  <div class="col-lg-6">
+    <SliderControl v-model="pitch" label="Pitch" :caliber="pitch" :min="0" :max="1" :step="0.1" />
+  </div>
+</div>
+
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
     <h2 class="text-warning">
       Voice
