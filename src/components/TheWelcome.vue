@@ -1,31 +1,35 @@
 <script>
 import axios from 'axios';
-import ollama from 'ollama';
+import moment from 'moment';
 import TTS from 'text-to-speech-offline';
-
-import { ref } from 'vue';
+import { useVoiceSettingsStore } from '@/stores/counter';
+import { ref, onMounted } from 'vue';
 export default {
   setup(){
     let controller;
+    const glob = useVoiceSettingsStore();
     const disable = ref(false);
     const total_duration = ref(0);
     const prompt = ref("");
     const msg = ref('');
     const response = ref("");
+    const formatTime = (x) => {
+      return moment(x).seconds()
+    }
     const getChat = async () =>{
       disable.value = true;
       msg.value = prompt.value;
       prompt.value ="";
       controller = new AbortController();
       const signal = controller.signal;
-      const message = { role: 'user', content: msg.value };
+      //const message = { role: 'user', content: msg.value };
       
       try{
-        const res = await axios.post('http://127.0.0.1:11434/api/chat', 
+        const res = await axios.post('http://127.0.0.1:11434/api/generate', 
           {
           'model': 'ai-doctor',
-          "messages": [message],
-          //'prompt': msg.value,
+          //"messages": [message],
+          'prompt': msg.value,
           "stream": false,
           "options": {
               "seed": 101,
@@ -35,47 +39,10 @@ export default {
         {signal}
         );
         
-        //console.log(res.data)
-      /*  
-        const reader = res.data.message.getReader();
-        const decoder = new TextDecoder();
-        const stream = async () => {
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) {
-              // Stream ended
-              disable.value = false;
-              break;
-            }
-            // Handle each chunk of data
-            //console.log(value)
-            const chunk = decoder.decode(value);
-            //const  val = JSON.parse(chunk)
-            const resp = chunk.message//.content;
-            console.log(JSON.stringify(chunk.message))
-            response.value += resp;//JSON.stringify(val)//.content.toString();//.toString();// || JSON.parse(val).message.system.toString()//.system
-            console.log(response.value)
-            disable.value = true;
-          }
-        };
-         stream();
-         
-        /*
-        const res = await axios.post('http://127.0.0.1:11434/api/chat',
-        {
-          'model': 'ai-doctor',
-          "messages": [message],
-          //'prompt': msg.value,
-          "format": "json",
-          "stream": !false,
-        },
-        {responseType: "stream", signal: signal},
-      );
-      */
-      total_duration.value = res.data.prompt_eval_duration/60000000;
-      response.value = `${msg.value}:\n${res.data.message.content}`
-        //console.log(res.data)
-      } catch(errors){
+      console.log(res.data.context)
+      total_duration.value = res.data.context.length/formatTime(res.data.eval_duration);
+      response.value = `${msg.value}:\n${res.data.response}`
+     } catch(errors){
         console.log(errors)
       }
       finally{
@@ -89,27 +56,8 @@ export default {
       alert("Chat Aborted!!!")
     }
   };
-   
-const tryChat = async () =>{
-  disable.value = true;
-  msg.value = prompt.value;
-  prompt.value ="";
-  controller = new AbortController();
-      const signal = controller.signal;
-  const message = { role: 'user', content: msg.value };
-  const res = await ollama.chat({model:'ai-doctor', messages : [message], stream: !false }, {signal})
-  //const res = await ollama.generate({model:'tinyllama', prompt: msg.value, stream: false, raw: true })
-  //response.value = res.message.content || "something went wrong"
-  console.log(res)
-  //console.log(res.message.content)
-  for await (var part of res) {
-    response.value += part.message.content.toString();
-    console.log(part.message.content)
-  }
-  disable.value = false;
-}
 const tts = () => {
-  TTS(response.value || 'nothing to talk about', {language: "english", volume:1, rate:1, pitch: 1})
+  TTS(response.value || 'nothing to talk about', {language: "english", volume: glob.volume, rate:glob.rate, pitch: glob.pitch})
 };
 
 const clearOutput = async () => {
@@ -133,18 +81,19 @@ const copyQ = () => {
   // Alert the copied text
   alert("Copied to clipboard");
 }
+
     return{
-        getChat, msg, prompt, response, disable, tryChat, clearOutput, copyOutput, stopGen, copyQ, tts, total_duration
+       formatTime, glob, getChat, msg, prompt, response, disable, clearOutput, copyOutput, stopGen, copyQ, tts, total_duration
       }
   }    
 }
 </script>
 
 <template>
-  <!--div class="col-12 my-2">
-    <h2 class="text-warning text-center">Baun Education</h2>
-    <h3 class="text-light text-center">AI Tutor and Teacher Assistant</h3>
-  </div-->
+ 
+  <h2>{{ glob.volume }}
+  
+  </h2>
   <div 
   v-show="disable"
   class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
@@ -180,7 +129,7 @@ const copyQ = () => {
   </div>
   <div>
     <h2 class="text-light">
-      {{ total_duration }} 
+      {{ total_duration.toFixed(2) }} T/s
     </h2>
   </div>
   <!--div class="dropdown">
@@ -202,10 +151,10 @@ const copyQ = () => {
       </button>
         <input class="form-control" aria-describedby="basic" 
         placeholder="Student or Teacher? BaunBot can help" v-model="prompt"  @keyup.enter="getChat()">
-        <button class="input-group-text bg-warning text-dark" id="basic" @click="getChat()">Go
-        <!--span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
-        </span-->
-      </button>
+        <!--button class="input-group-text bg-warning text-dark" id="basic" @click="getChat()">Go
+        <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
+        </span>
+      </button-->
   </div>
 </div>
 </template>
