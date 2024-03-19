@@ -9,8 +9,13 @@ export default {
     const chosen_model = ref("");
     const progress = ref("");
     const models = ref([]);
+    const selectedModel = ref("");
     const formatdate = (x) => {
       return moment(x, moment.ISO_8601).fromNow()
+    }
+    const selectModel = ()=>{
+      window.alert(selectedModel.value)
+      localStorage.setItem('model', selectedModel.value)
     }
     const getModels = async () =>{
       disable.value = true;
@@ -66,7 +71,7 @@ const copyQ = () => {
   alert("Copied to clipboard");
 }
     return {
-      formatdate, getModels, models, disable, copyOutput, copyQ, pullModel, chosen_model, progress
+      formatdate, getModels, models, disable, copyOutput, copyQ, pullModel, chosen_model, progress, selectedModel, selectModel
       }
   }    
 }
@@ -103,6 +108,7 @@ const copyQ = () => {
   v-for="model in models" :key="model.digest"
   >
     <div class="d-flex w-100 justify-content-between">
+      <input type="radio" v-model="selectedModel" name="choose" :value="model.name" @change ="selectModel">
       <h5 class="mb-1" >{{ model.name }}</h5>
       <small>{{ formatdate(model.modified_at) }}</small>
     </div>
