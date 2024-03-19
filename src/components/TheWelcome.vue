@@ -27,10 +27,11 @@ export default {
       try{
         const res = await axios.post('http://127.0.0.1:11434/api/generate', 
           {
-          'model': 'tinyllama',
+          'model': 'ai-doctor',
           //"messages": [message],
           'prompt': msg.value,
           "stream": false,
+          //"raw": true,
           "options": {
               "seed": 101,
               "temperature": 0
@@ -125,7 +126,8 @@ const copyQ = () => {
       <i class="bi bi-mic-fill"></i>
     </button>
     
-    <!--button class="btn btn-outline-warning" v-show="disable" @click="stopGen">Stop generating...</button-->
+    <button data-bs-toggle-tooltip="Copy AI response" class="btn btn-outline-warning" v-show="response" @click="copyOutput">
+      <i class="bi bi-clipboard"></i></button>
     <button title="Copy response to clipboard"  data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-outline-warning" @click="copyOutput" v-show="response" >Copy</button>
     <button class="btn btn-outline-warning" @click="clearOutput" v-show="response">Clear</button>
   </div>
@@ -141,7 +143,7 @@ const copyQ = () => {
           <i class="bi bi-mic-fill"></i>
       </button-->
         <input class="form-control" aria-describedby="basic" 
-        placeholder="Student or Teacher? BaunBot can help" v-model="prompt"  @keyup.enter="getChat()">
+        placeholder="I am your AI Doctor. How are you feeling?" v-model="prompt"  @keyup.enter="getChat()">
         <button class="input-group-text bg-warning text-dark" id="basic" @click="getChat()">
           <i class="bi bi-play-fill"></i>
       </button>

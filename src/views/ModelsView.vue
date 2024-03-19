@@ -78,17 +78,19 @@ const copyQ = () => {
       Pull Model
     </h2>
     <div class="form-group mb-3 input-group-text">
-      <input type="text" class="form-control" v-model="chosen_model">
       <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
         </span>
+      <input type="text" class="form-control" v-model="chosen_model">
+     
+        <button class="btn btn-warning" @click="pullModel">
+        Pull
+      </button>
     </div>
     <div class="form-group d-flex justify-content-between mb-3">
       <h3 class="text-success">
         {{ progress }}
       </h3>
-      <button class="btn btn-warning" @click="pullModel">
-        Pull
-      </button>
+     
     </div>
     
   </div>
