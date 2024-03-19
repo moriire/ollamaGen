@@ -2,20 +2,16 @@
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import moment from 'moment';
-
+import { useVoiceSettingsStore } from '@/stores/counter';
 export default {
   setup(){
+    const params = useVoiceSettingsStore();
     const disable = ref(false);
     const chosen_model = ref("");
     const progress = ref("");
     const models = ref([]);
-    const selectedModel = ref("");
     const formatdate = (x) => {
       return moment(x, moment.ISO_8601).fromNow()
-    }
-    const selectModel = ()=>{
-      window.alert(selectedModel.value)
-      localStorage.setItem('model', selectedModel.value)
     }
     const getModels = async () =>{
       disable.value = true;
@@ -71,16 +67,16 @@ const copyQ = () => {
   alert("Copied to clipboard");
 }
     return {
-      formatdate, getModels, models, disable, copyOutput, copyQ, pullModel, chosen_model, progress, selectedModel, selectModel
+      formatdate, getModels, models, disable, copyOutput, copyQ, pullModel, chosen_model, progress,
+      params
       }
   }    
 }
 </script>
-
 <template>
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
     <h2 class="text-warning">
-      Pull Model
+      Pull Model {{  params.selectedModel }}
     </h2>
     <div class="form-group mb-3 input-group-text">
       <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
@@ -108,7 +104,7 @@ const copyQ = () => {
   v-for="model in models" :key="model.digest"
   >
     <div class="d-flex w-100 justify-content-between">
-      <input type="radio" v-model="selectedModel" name="choose" :value="model.name" @change ="selectModel">
+      <input class="form-check-input" type="radio" v-model="params.selectedModel" name="choose" :value="model.name" @change ="params.selectModel">
       <h5 class="mb-1" >{{ model.name }}</h5>
       <small>{{ formatdate(model.modified_at) }}</small>
     </div>

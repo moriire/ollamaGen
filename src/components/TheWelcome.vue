@@ -27,7 +27,7 @@ export default {
       try{
         const res = await axios.post('http://127.0.0.1:11434/api/generate', 
           {
-          'model': 'ai-doctor',
+          'model': glob.selectedModel,
           //"messages": [message],
           'prompt': msg.value,
           "stream": false,
