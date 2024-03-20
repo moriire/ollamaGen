@@ -91,9 +91,7 @@ const copyQ = () => {
       <h3 class="text-success">
         {{ progress }}
       </h3>
-     
     </div>
-    
   </div>
 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
   <h2 class="text-warning">
@@ -104,7 +102,7 @@ const copyQ = () => {
   v-for="model in models" :key="model.digest"
   >
     <div class="d-flex w-100 justify-content-between">
-      <input class="form-check-input" type="radio" v-model="params.selectedModel" name="choose" :value="model.name" @change ="params.selectModel">
+      <input class="form-check-inputq" type="radio" v-model="params.selectedModel" name="choose" :value="model.name" @change ="params.selectModel">
       <h5 class="mb-1" >{{ model.name }}</h5>
       <small>{{ formatdate(model.modified_at) }}</small>
     </div>
