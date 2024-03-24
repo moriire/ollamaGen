@@ -20,7 +20,7 @@ export default {
         const getChat = async () => {
             disable.value = true;
             msg.value = prompt.value;
-            conversations.value.push({ ques: msg.value, resp: ''});
+            conversations.value.push({ ques: msg.value, resp: '' });
             prompt.value = "";
             controller = new AbortController();
             const signal = controller.signal;
@@ -43,9 +43,9 @@ export default {
                 );
                 console.log(res.data);
                 //total_duration.value = res.data.context.length / formatTime(res.data.eval_duration);
-                response.value = `${msg.value}:\n${res.data.message.content}`
-                conversations.value.findLast(x=>x).resp = response.value
-                console.log(conversations.value.findLast(x=>x))// = response.value
+                response.value = res.data.message.content
+                conversations.value.findLast(x => x).resp = response.value
+                console.log(conversations.value.findLast(x => x))// = response.value
             } catch (errors) {
                 console.log(errors)
             }
@@ -94,53 +94,50 @@ export default {
 </script>
 
 <template>
-    <div v-show="disable" class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
-        <div class="row justify-content-end">
-            <div class="col-8">
-                <div class="input-group">
-                    <button data-bs-toggle="tooltip" data-bs-placement="top" title="Copy text to clipboard"
-                        class="input-group-text bg-warning text-dark" id="basic" @click="copyQ">
-                        <i class="bi bi-clipboard"></i>
-                    </button>
-                    <input disabled readonly class="form-control bg-dark text-warning" id="prompt-msg" v-model="msg" />
-                    <button class="input-group-text bg-warning text-dark" id="basic" @click="copyQ">
+    
+            <div v-for="(conv, index) in  conversations" :key="index">
+                <div class="row justify-content-start my-3 mx-2 .input-group">
+                    <div id="system" class="col-lg-6 col-md-7 col-sm-8 col-xs-9 bg-warning .rounded-pill px-4 py-3">
+                        <!--i class="bi bi-clipboard me-2"></i-->
+
+                        {{ conv.ques }}
+                    </div>
+                </div>
+                <div class="row justify-content-end my-3 mx-2 .input-group">
+                    <div id="user"
+                        class="col-lg-6 col-md-7 col-sm-8 col-xs-9 bg-light  .rounded-pill px-4 py-3">
                         <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
                         </span>
-                    </button>
-
+                        {{ conv.resp }}
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div v-for="(conv, index) in  conversations" :key="index">
-        <div class="row justify-content-start my-3 input-group">
-            <div class="col-lg-7 bg-warning .rounded-pill px-4 py-3  input-group-text">
-                        <i class="bi bi-clipboard me-2"></i>
-                
-                {{ conv.ques }}
+           
+            <div class="row justify-content-center .align-items-center">
+        
+        <div
+                class="col-lg-10 col-md-10 col-sm-10 col-xs-12 .mx-3 my-2 position-absolute start-50 bottom-0 translate-middle-x">
+                <div class="input-group my-4">
+                    <input class="form-control" aria-describedby="basic"
+                        placeholder="I am your AI Doctor. How are you feeling?" v-model="prompt"
+                        @keyup.enter="getChat()">
+                    <button class="input-group-text bg-warning text-dark" id="basic" @click="getChat()">
+                        <i class="bi bi-play-fill"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="row justify-content-end my-3 input-group">
-            <div class="col-lg-7 bg-light text- .rounded-pill px-4 py-3 input-group-text">
-                <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
-                        </span>
-                        {{ conv.resp }}
-            </div>
-        </div>
-    </div>
-    <div
-        class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2 position-absolute start-50 bottom-0 translate-middle-x">
-        <div class="input-group my-4">
-            <input class="form-control" aria-describedby="basic" placeholder="I am your AI Doctor. How are you feeling?"
-                v-model=" prompt " @keyup.enter="getChat()">
-            <button class="input-group-text bg-warning text-dark" id="basic" @click="getChat()">
-                <i class="bi bi-play-fill"></i>
-            </button>
-        </div>
     </div>
 </template>
 <style scoped>
 textarea {
     outline-color: yellow;
+}
+
+#system,
+#user {
+    max-height: max-content;
+    min-height: min-content;
+    max-width: max-content;
+    min-width: min-content
 }
 </style>

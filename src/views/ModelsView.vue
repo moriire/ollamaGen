@@ -74,6 +74,7 @@ const copyQ = () => {
 }
 </script>
 <template>
+   <div class="row justify-content-center .align-items-center">
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
     <h2 class="text-warning">
       Pull Model {{  params.selectedModel }}
@@ -113,6 +114,7 @@ const copyQ = () => {
     </div>
     
   </a>
+</div>
 </div>
 </div>
 </template>
