@@ -109,6 +109,8 @@ export default {
         </div>
       </div>
     </div>
+    </div>
+    <div class="row justify-content-center .align-items-center">
     <div class="col-lg-10 col-md-10 mx-3 mb-2 bg-grey text-light border border-top border-bottom-0 p-3 fs-3 overflow-y" id="gensys" v-show="response">
       
       {{  response }}
@@ -117,8 +119,9 @@ export default {
 
         </textarea-->
     </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2 justify-content-between">
-      <!--div>
+    </div>
+    <!--div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2 justify-content-between">
+      <div>
         <button class="btn btn-outline-warning" v-show="disable" @click="stopGen">
           <i class="bi bi-stop-fill"></i>
         </button>
@@ -137,8 +140,9 @@ export default {
         <h2 class="text-light" v-show="response">
           {{ total_duration.toFixed(2) }} T/s
         </h2>
-      </div-->
-    </div>
+      </div>
+    </div-->
+    <div class="row justify-content-center .align-items-center mt-2">
     <div
       class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 position-absolute start-50 bottom-0 translate-middle-x">
       <div class="row justify-content-between">
@@ -163,7 +167,7 @@ export default {
         </h2>
       </div>
       </div>
-      <div class="input-group my-4">
+      <div class="input-group my-3">
         <!--button class="input-group-text bg-warning text-dark" id="basic" @click="tts()">
           <i class="bi bi-mic-fill"></i>
       </button-->
@@ -184,7 +188,7 @@ textarea {
   min-width: min-content;
   max-width: max-content;
   min-height: min-content;
-  max-height: 65vh;
+  max-height: 70vh;
   overflow-y: scroll;
 }
 </style>
