@@ -140,7 +140,7 @@ export default {
       </div-->
     </div>
     <div
-      class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2 position-absolute start-50 bottom-0 translate-middle-x">
+      class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 position-absolute start-50 bottom-0 translate-middle-x">
       <div class="row justify-content-between">
         <div class="col-6">
         <button class="btn btn-outline-warning" v-show="disable" @click="stopGen">
@@ -184,7 +184,7 @@ textarea {
   min-width: min-content;
   max-width: max-content;
   min-height: min-content;
-  max-height: 70vh;
+  max-height: 65vh;
   overflow-y: scroll;
 }
 </style>
