@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ChatView from '../views/ChatView.vue'
 import SettingsView from '../views/SettingsView.vue'
 import ModelsView from '../views/ModelsView.vue'
 import VoiceView from '../views/VoiceView.vue'
@@ -10,6 +11,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: ChatView
     },
     {
       path: '/settings',
