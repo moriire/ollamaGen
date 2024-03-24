@@ -142,7 +142,7 @@ export default {
     <div
       class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 position-absolute start-50 bottom-0 translate-middle-x">
       <div class="row justify-content-between">
-        <div class="col-6">
+        <div class="col-8">
         <button class="btn btn-outline-warning" v-show="disable" @click="stopGen">
           <i class="bi bi-stop-fill"></i>
         </button>
@@ -157,8 +157,8 @@ export default {
           class="btn btn-outline-warning" @click="copyOutput" v-show="response">Copy</button>
         <button class="btn btn-outline-warning" @click="clearOutput" v-show="response">Clear</button>
       </div>
-      <div class="col-3">
-        <h2 class="text-light" v-show="response">
+      <div class="col-4">
+        <h2 class="text-light text-end" v-show="response">
           {{ total_duration.toFixed(2) }} T/s
         </h2>
       </div>
