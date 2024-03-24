@@ -184,6 +184,7 @@ textarea {
   min-width: min-content;
   max-width: max-content;
   min-height: min-content;
-  max-height: max-content;
+  max-height: 70vh;
+  overflow-y: scroll;
 }
 </style>
