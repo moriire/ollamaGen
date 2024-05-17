@@ -1,0 +1,55 @@
+{
+  "name": "ollamaGen",
+  "productName": "ollamaGen",
+  "version": "0.0.9",
+  "description": "Run your favorite LLM and chat privately",
+  "main": ".vite/build/main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [
+    "LLM",
+    "Large Language Model",
+    "Ollama",
+    "Run Ollama",
+    "Ollama UI",
+    "run llm privately and offline"
+  ],
+  "author": {
+    "name": "Ibraheem Mobolaji Abdulsalam",
+    "email": "ibmabdulsalam@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-deb": "^7.4.0",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
+    "@electron-forge/plugin-vite": "^6.1.1",
+    "@electron-forge/publisher-github": "^7.4.0",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "electron": "^29.1.6",
+    "electron-forge-maker-appimage": "github:Marcus10110/electron-forge-maker-appimage",
+    "vite": "^5.1.6"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "axios": "^1.6.7",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "dayjs": "^1.11.10",
+    "electron-squirrel-startup": "^1.0.0",
+    "gh-pages": "^6.1.1",
+    "moment": "^2.30.1",
+    "pinia": "^2.1.7",
+    "rpmbuild": "^0.0.23",
+    "text-to-speech-offline": "^1.0.1",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
+  }
+}
