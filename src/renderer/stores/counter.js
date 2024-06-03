@@ -22,8 +22,8 @@ export const useVoiceSettingsStore = defineStore('voice', () => {
   const voiceParams = reactive({ vol: volume.value, rate: rate.value, pitch: pitch.value})
 
  //Model settings
- const selectedModel = ref(localStorage.getItem('model'));
-
+const initModel = localStorage.getItem('model') || 'Choose Model';
+const selectedModel = ref(initModel);
 
  const selectModel = ()=>{
   window.alert(selectedModel.value)

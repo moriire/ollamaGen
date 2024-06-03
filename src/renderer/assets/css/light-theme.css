@@ -1,0 +1,10 @@
+body, div.sidebar, div.main{
+    background-color: white !important;
+    color: black !important;
+}
+a.nav-link {
+    color: var(--bs-dark);
+}
+hr{
+    border-color: var(--bs-dark);
+}

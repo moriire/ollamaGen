@@ -10,9 +10,9 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    autoHideMenuBar: true,
-    menuBarVisible: false,
-    sandbox: false,
+    //autoHideMenuBar: true,
+    //menuBarVisible: false,
+    //sandbox: false,
     backgroundColor: '#0000',
 })
   mainWindow.maximize()
@@ -26,7 +26,7 @@ const createWindow = () => {
   }
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

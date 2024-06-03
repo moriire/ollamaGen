@@ -17,7 +17,7 @@ export default {
 
             <div v-for="(conv, index) in chat.conversations" :key="index" class="responsive">
                 <div class="row justify-content-start my-3 mx-2 .input-group" v-if="conv.role=='system'">
-                    <div id="system" class="col-lg-6 col-md-7 col-sm-8 col-xs-9 bg-warning .rounded-pill px-4 py-3">
+                    <div id="system" class="col-lg-8 col-md-10 col-sm-10 col-xs-12 bg-warning .rounded-pill px-4 py-3">
                         <!--i class="bi bi-clipboard me-2"></i-->
 
                         {{ conv.content }}
@@ -49,10 +49,6 @@ export default {
     </div>
 </template>
 <style scoped>
-textarea {
-    outline-color: yellow;
-}
-
 #system,
 #user {
     max-height: max-content;

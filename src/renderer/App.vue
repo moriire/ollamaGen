@@ -1,17 +1,20 @@
 <script>
 import "alertifyjs/build/css/alertify.min.css";
-import { ref } from "vue"
+import { ref } from "vue";
 import SliderControl from "./components/SliderControll.vue";
+import ThemeSwitcher from './components/ThemeSwitcher.vue';
 import { useVoiceSettingsStore } from './stores/counter.js';
 import { useGenerateStore } from "./stores/generate.js";
-import alertify from "alertifyjs"
+import alertify from "alertifyjs";
+
+
 import {
   RouterLink,
   RouterView
 } from 'vue-router'
 export default {
-  components: { RouterLink, RouterView, SliderControl },
-  
+  components: { RouterLink, RouterView, SliderControl, ThemeSwitcher},
+
   setup() {
     const gen = useGenerateStore();
     const showMessage = async () => {
@@ -41,7 +44,6 @@ export default {
       </h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive"
         arial-label="close">
-
       </button>
     </div>
     <div class="offcanvas-body">
@@ -52,6 +54,7 @@ export default {
         <hr class="text-white">
         <RouterLink class="nav-link" to="/models">Models</RouterLink>
         <hr class="text-white">
+
         <div class="row justify-content-center">
           <div class="col-12 my-2">
             <SliderControl v-model="params.modelParams.temperature" label="Temperature" :min="0" :max="1" :step=".1"
@@ -72,67 +75,82 @@ export default {
             <SliderControl v-model="params.modelParams.seed" label="seed" :min="0" :max="100"
               @change="params.changeModelParams" />
           </div>
-
         </div>
       </div>
     </div>
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 d-none col-lg-block d-none d-lg-block  bg-dark vh-100 px-4 py-4">
-        <RouterLink class="navbar-brand text-warning mb-4" to="/">
+      <div class="col-lg-3 d-none col-lg-block d-none d-lg-block  bg-dark vh-100 px-4 py-4 sidebar"
+        style="overflow-y: scroll; height:min-content">
+        <div class="navbar-brand text-warning mt-3 text-decoration-none" to="/">
 
-          <h2>ollamaGen</h2>
-        </RouterLink>
-        <div class="nav flex-column nav-pills nav-warning me-3" role="tablist" aria-orientation="vertical">
+          <h2>ollamaGen <span class="float-end"><ThemeSwitcher/></span></h2>
+        </div>
+        <div class="nav flex-column nav-pills nav-warning me-3 mt-4" role="tablist" aria-orientation="vertical">
           <RouterLink class="nav-link" to="/">Home</RouterLink>
           <hr class="text-white">
           <RouterLink class="nav-link" to="/chat" type="button">Chat</RouterLink>
           <hr class="text-white">
-          <RouterLink class="nav-link" to="/models" data-bs-target="#v-pills-messages">Models</RouterLink>
+          <RouterLink class="nav-link" to="/models" >Models</RouterLink>
           <hr class="text-white">
           <div class="col-lg-12 my-2">
             <div class="d-flex justify-content-between">
-              <input type="radio" class="btn-check" v-model="gen.resMode" value="batch"  id="option1" autocomplete="off">
-              <label class="btn btn-outline-warning" for="option1" >Batch</label>
+              <input type="radio" class="btn-check" v-model="gen.resMode" value="batch" id="option1" autocomplete="off">
+              <label class="btn btn-outline-warning" for="option1">Batch</label>
 
-              <input type="radio" class="btn-check" v-model="gen.resMode" value="stream" id="option2" autocomplete="off">
+              <input type="radio" class="btn-check" v-model="gen.resMode" value="stream" id="option2"
+                autocomplete="off">
               <label class="btn btn-outline-warning" for="option2">Stream</label>
             </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-12 my-2">
-              <SliderControl v-model="params.modelParams.temperature" label="Temperature" :min="0" :max="1" :step=".1"
-                @change="params.changeModelParams" />
-            </div>
+            <hr class="text-white">
+            <div class="nav flex-column nav-pills nav-warning">
 
-            <div class="col-lg-12 my-2">
-              <SliderControl v-model="params.modelParams.top_p" label="Top_p" :min="0" :max="1.0" :step="0.05"
-                @change="params.changeModelParams" />
-            </div>
+              <a class="nav-link" type="button" href="#">
+                {{ params.selectedModel }}
+                <span class=".btn .btn-warning .text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#modelParameter"
+                  aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-caret-down"></i></span>
+              </a>
 
-            <div class="col-lg-12 my-2">
-              <SliderControl v-model="params.modelParams.top_k" label="Top_k" :min="0" :max="100" :step="5"
-                @change="params.changeModelParams" />
-            </div>
-            <div class="col-lg-12 my-2">
-              <SliderControl v-model="params.modelParams.n_ctx" label="num_ctx" :min="126" :max="8192" :step="126"
-                @change="params.changeModelParams" />
-            </div>
+              <div class="collapse" id="modelParameter">
+                <div class="row justify-content-center">
+                  <div class="col-12 my-2">
+                    <SliderControl v-model="params.modelParams.temperature" label="Temperature" :min="0" :max="1"
+                      :step=".1" @change="params.changeModelParams" :caliber="params.modelParams.temperature" />
+                  </div>
 
-            <!--div class="col-lg-12 my-2">
+                  <div class="col-lg-12 my-2">
+                    <SliderControl v-model="params.modelParams.top_p" label="Top_p" :min="0" :max="1.0" :step="0.05"
+                      @change="params.changeModelParams" :caliber="params.modelParams.top_p" />
+                  </div>
+
+                  <div class="col-lg-12 my-2">
+                    <SliderControl v-model="params.modelParams.top_k" label="Top_k" :min="0" :max="100" :step="5"
+                      @change="params.changeModelParams" :caliber="params.modelParams.top_k" />
+                  </div>
+                  <div class="col-lg-12 my-2">
+                    <SliderControl v-model="params.modelParams.n_ctx" label="num_ctx" :min="126" :max="8192" :step="126"
+                      @change="params.changeModelParams" :caliber="params.modelParams.n_ctx" />
+                  </div>
+
+                  <!--div class="col-lg-12 my-2">
               <SliderControl v-model="params.modelParams.seed" label="seed" :min="0" :max="100"
                 @change="params.changeModelParams" />
             </div-->
-            <!--div class="col-lg-12 my-3 text-center">
+                  <!--div class="col-lg-12 my-3 text-center">
               <button class="btn btn-sm btn-outline-warning" @click="reset">reset</button>
             </div-->
+                </div>
+              </div>
+            </div>
           </div>
+          <hr class="text-white">
+
         </div>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 main">
         <nav class="m-3 navbar navbar-expand-lg navbar-expand-md navbar-light d-lg-none  ">
-          <a class="navbar-brand text-warning mb-4" href="#">
+          <a class="navbar-brand text-warning mb-4 my-4" href="#">
             <h2>ollamaGen</h2>
           </a>
           <button class="navbar-toggler bg-warning" type="button" data-bs-toggle="offcanvas"
@@ -143,18 +161,24 @@ export default {
 
         <RouterView />
       </div>
-      <!--div class="col-lg-3 d-none col-lg-block d-none d-lg-block  bg-dark vh-100 px-4 py-4">
-        <div>
-          <textarea name="" id="" rows="4" placeholder="Instruction" class="form-control"></textarea>
+      <!--div class="col-md-3 d-none d-none d-md-block  bg-dark vh-100 px-4 py-4">
+        
+        <div class="text-light .border border-warning border-end-0 border-top-0 border-start-0">
+          <h2>Model: <span class="text-warning">Ollama</span></h2>
         </div>
-        <div>
-          <fieldset>
-            <legend>Active Model</legend>
-            <label for="activemodel">Active Model</label>
-            <input type="text">
-          </fieldset>
-         
+         <hr class="text-light">
+         <div class="text-light .border border-warning border-end-0 border-top-0 border-start-0">
+          <h2>Model: <span class="text-warning">Ollama</span></h2>
         </div>
+         <hr class="text-light">
+         <div class="text-light .border border-warning border-end-0 border-top-0 border-start-0">
+          <h2>Model: <span class="text-warning">Ollama</span></h2>
+        </div>
+         <hr class="text-light">
+         <div class="text-light .border border-warning border-end-0 border-top-0 border-start-0">
+          <h3>Model: <span class="text-warning">Ollama</span></h3>
+        </div>
+         <hr class="text-light">
       </div-->
     </div>
 

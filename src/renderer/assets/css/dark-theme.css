@@ -1,0 +1,10 @@
+body {
+    background-color: black;
+    color: white;
+}
+div#system{
+    color: var(--bs-dark) !important;
+}
+div#user{
+    color: var(--bs--dark) !important;
+}
