@@ -37,11 +37,11 @@ export default {
 </script>
 
 <template>
-  <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasResponsive"
+  <div class="offcanvas offcanvas-end bg-light" tabindex="-1" id="offcanvasResponsive"
     aria-labelledby="offcanvasResponsiveLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title text-warning" id="offcanvasResponsiveLabel">
-        ollamaGen
+        ollamaGen <ThemeSwitcher />
       </h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive"
         arial-label="close">

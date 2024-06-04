@@ -28,7 +28,7 @@ export const useGenerateStore = defineStore('generate', () => {
       const res = await axios.post(`http://localhost:11434/api/generate`, {
           model: glob.selectedModel,
           prompt: msg.value,
-          stream: false,
+          stream: true,
           options: {
             temperature: glob.modelParams.temperature,
             top_k: glob.modelParams.top_k,
@@ -109,7 +109,7 @@ export const useGenerateStore = defineStore('generate', () => {
     TTS(response.value || 'nothing to talk about', { language: "english", volume: glob.voiceParams.vol, rate: glob.voiceParams.rate, pitch: glob.voiceParams.pitch })
   };
 
-  const resMode = ref("batch");
+  const resMode = ref("stream");
   const getChat = () => {
     if (resMode.value === 'stream') {
       console.log(resMode.value)
