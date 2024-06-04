@@ -79,7 +79,7 @@ watchEffect(() => {
       :min="min"
       :max="max"
       :step="step"
-      class="form-control"
+      class="w-100"
     />
   </div>
 </template>

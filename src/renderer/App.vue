@@ -51,7 +51,7 @@ export default {
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 d-none col-lg-block d-none d-lg-block  bg-dark vh-100 px-4 py-4 sidebar"
+      <div class="col-lg-3 d-none col-lg-block d-none d-lg-block  bg-dark vh-100 px-4 py-2 sidebar"
         style="overflow-y: scroll; height:min-content">
         <div class="navbar-brand text-warning mt-3" to="/">
 
@@ -101,7 +101,7 @@ div.cont {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
 }
 
 /* Track */
@@ -119,9 +119,4 @@ div.cont {
   background: #555;
 }
 
-.form-switch .form-check-input:checked {
-  background-position: right center;
-  background-color: var(--bs-dark);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
-}
 </style>
