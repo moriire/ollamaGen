@@ -95,7 +95,7 @@ export default {
           <RouterLink class="nav-link" to="/models" >Models</RouterLink>
           <hr class="text-white">
           <div class="col-lg-12 my-2">
-            <div class="d-flex justify-content-between">
+            <!--div class="d-flex justify-content-between">
               <input type="radio" class="btn-check" v-model="gen.resMode" value="batch" id="option1" autocomplete="off">
               <label class="btn btn-outline-warning" for="option1">Batch</label>
 
@@ -103,16 +103,16 @@ export default {
                 autocomplete="off">
               <label class="btn btn-outline-warning" for="option2">Stream</label>
             </div>
-            <hr class="text-white">
+            <hr class="text-white"-->
             <div class="nav flex-column nav-pills nav-warning">
 
-              <a class="nav-link" type="button" href="#">
+              <div class="nav-link d-block" type="button" href="#">
                 {{ params.selectedModel }}
                 <span class=".btn .btn-warning .text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#modelParameter"
                   aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-caret-down"></i></span>
-              </a>
+              </div>
 
-              <div class="collapse" id="modelParameter">
+              <div class="collapse show" id="modelParameter">
                 <div class="row justify-content-center">
                   <div class="col-12 my-2">
                     <SliderControl v-model="params.modelParams.temperature" label="Temperature" :min="0" :max="1"
