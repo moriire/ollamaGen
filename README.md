@@ -1,46 +1,43 @@
 # ollamaGen
 
-## Overview
-**ollamaGen** is a cross-platform desktop application designed to enable users to chat with Large Language Models (LLMs) locally and offline. Leveraging the advanced capabilities of **ollama**, ollamaGen ensures seamless interaction with models like Llama 2 without the need for an internet connection.
+**ollamaGen** is a cross-platform desktop application designed for chatting with large language models locally and offline. Utilizing **ollama** as its backend, ollamaGen allows users to seamlessly interact with advanced AI models like Llama 2, ensuring privacy and accessibility without the need for an internet connection.
 
 ## Features
-- **Cross-Platform Compatibility:** Available for Windows, Linux, and MacOS.
-- **Offline Functionality:** Run and interact with LLMs without needing an internet connection.
-- **User-Friendly Interface:** Intuitive design for easy setup and use.
-- **Secure and Private:** All data and interactions remain local to your machine.
 
-## Getting Started
-1. **Download** the latest build for your operating system from the [Releases page](https://github.com/yourusername/ollamaGen/releases).
-2. **Install** the application following the provided instructions for your OS.
-3. **Run** ollamaGen and start chatting with your preferred language model locally.
-
-## Prerequisites
-- Ensure you have the necessary hardware capabilities to run large language models efficiently.
-- Install Ollama
-- Verify your system meets the minimum OS requirements for your respective build.
+- **Cross-Platform:** Compatible with Windows, Linux, and macOS.
+- **Offline Capability:** No internet connection required after initial setup.
+- **User-Friendly Interface:** Simple and intuitive design for easy interaction with AI models.
+- **Powered by Ollama:** Leverages the advanced capabilities of ollama for running large language models locally.
 
 ## Installation
 
-### Windows
-1. Download the installer from the [Releases page](https://github.com/moriire/ollamaGen/releases).
-2. Run the installer and follow the on-screen instructions.
-3. Launch ollamaGen from the Start Menu or Desktop shortcut.
+### Step 1: Install Ollama
 
-### Linux
-1. Download the tarball from the [Releases page](https://github.com/moriire/ollamaGen/releases).
-2. Extract the tarball using `tar -xvzf ollamaGen-linux.tar.gz`.
-3. Navigate to the extracted directory and run `./ollamaGen`.
+Before using ollamaGen, you need to install ollama. Open your OS terminal and run the following command:
 
-### MacOS
-1. Download the DMG file from the [Releases page](https://github.com/moriire/ollamaGen/releases).
-2. Open the DMG file and drag ollamaGen to your Applications folder.
-3. Launch ollamaGen from your Applications folder.
+```sh
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+For further details about ollama, please visit [Ollama's official website](https://www.ollama.com).
+
+### Step 2: Download ollamaGen
+
+Download the latest build of ollamaGen for your operating system:
+
+- [Windows](#)
+- [Linux](#)
+- [Mac](#)
+
+(Note: Replace `#` with the actual download links once they are available.)
 
 ## Usage
-1. Open ollamaGen.
-2. Navigate to models page. Download and select any downloaded model.
-3. Select the desired language model (e.g., Llama 2).
-4. Start typing your queries and receive responses in real-time.
+
+Once ollama is installed and ollamaGen is downloaded, follow these steps to start chatting with large language models:
+
+1. **Launch ollamaGen:** Open the downloaded application file for your OS.
+2. **Setup:** Follow the on-screen instructions to complete the initial setup.
+3. **Start Chatting:** Begin interacting with the AI model through the user-friendly interface.
 
 ## Contributing
 We welcome contributions from the community! To contribute:
@@ -51,10 +48,11 @@ We welcome contributions from the community! To contribute:
 5. Open a Pull Request.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
-For any questions or suggestions, feel free to open an issue or contact us at [ibmabdulsalam@gmail.com](mailto: ibmabdulsalam@gmail.com).
+For any questions or suggestions, feel free to open an issue or contact us at [ibmabdulsalam@gmail.com](mailto: ibmabdulsalam@gmail.com)
 
 ---
 
