@@ -2,6 +2,9 @@ body {
     background-color: black;
     color: white;
 }
+div.offcolor{
+  background-color: var(--bs-dark);
+}
 div#system{
     color: var(--bs-dark) !important;
 }

@@ -2,6 +2,9 @@ body, div.sidebar, div.main{
     background-color: white !important;
     color: black !important;
 }
+div.offcolor{
+  background-color: var(--bs-light);
+}
 a.nav-link {
     color: var(--bs-dark);
 }

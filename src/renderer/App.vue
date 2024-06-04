@@ -8,7 +8,6 @@ import { useVoiceSettingsStore } from './stores/counter.js';
 import { useGenerateStore } from "./stores/generate.js";
 import alertify from "alertifyjs";
 
-
 import {
   RouterLink,
   RouterView
@@ -31,13 +30,12 @@ export default {
       gen
     }
   }
-
 }
 
 </script>
 
 <template>
-  <div class="offcanvas offcanvas-end bg-light" tabindex="-1" id="offcanvasResponsive"
+  <div class="offcanvas offcanvas-end offcolor" tabindex="-1" id="offcanvasResponsive"
     aria-labelledby="offcanvasResponsiveLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title text-warning" id="offcanvasResponsiveLabel">
