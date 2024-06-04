@@ -113,7 +113,7 @@ export default {
               </div>
 
               <div class="collapse show" id="modelParameter">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center ms-3">
                   <div class="col-12 my-2">
                     <SliderControl v-model="params.modelParams.temperature" label="Temperature" :min="0" :max="1"
                       :step=".1" @change="params.changeModelParams" :caliber="params.modelParams.temperature" />
@@ -161,25 +161,7 @@ export default {
 
         <RouterView />
       </div>
-      <!--div class="col-md-3 d-none d-none d-md-block  bg-dark vh-100 px-4 py-4">
-        
-        <div class="text-light .border border-warning border-end-0 border-top-0 border-start-0">
-          <h2>Model: <span class="text-warning">Ollama</span></h2>
-        </div>
-         <hr class="text-light">
-         <div class="text-light .border border-warning border-end-0 border-top-0 border-start-0">
-          <h2>Model: <span class="text-warning">Ollama</span></h2>
-        </div>
-         <hr class="text-light">
-         <div class="text-light .border border-warning border-end-0 border-top-0 border-start-0">
-          <h2>Model: <span class="text-warning">Ollama</span></h2>
-        </div>
-         <hr class="text-light">
-         <div class="text-light .border border-warning border-end-0 border-top-0 border-start-0">
-          <h3>Model: <span class="text-warning">Ollama</span></h3>
-        </div>
-         <hr class="text-light">
-      </div-->
+     
     </div>
 
   </div>
