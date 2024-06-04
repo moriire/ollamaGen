@@ -1,7 +1,7 @@
 <template>
       <div @click="toggleTheme" class="text-warning d-inline">
-        <i class="bi bi-sun-fill fs-2"  v-if="theme=='light'"></i>
-        <i class="bi bi-moon-stars-fill fs-2" v-else></i> 
+        <i class="bi bi-moon-stars-fill fs-2"  v-if="theme=='light'"></i>
+        <i class="bi bi-sun-fill fs-2" v-else></i> 
       </div>
   </template>
   
