@@ -106,11 +106,11 @@ export default {
             <hr class="text-white"-->
             <div class="nav flex-column nav-pills nav-warning">
 
-              <div class="nav-link d-block" type="button" href="#">
+              <a class="nav-link d-flex justify-content-between bg-warning" type="button" href="#" data-bs-toggle="collapse" data-bs-target="#modelParameter"
+                  aria-expanded="false" aria-controls="collapseExample">
                 {{ params.selectedModel }}
-                <span class=".btn .btn-warning .text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#modelParameter"
-                  aria-expanded="false" aria-controls="collapseExample"><i class="bi bi-caret-down"></i></span>
-              </div>
+                <span class="me-0" ><i class="bi bi-caret-down"></i></span>
+              </a>
 
               <div class="collapse show" id="modelParameter">
                 <div class="row justify-content-center ms-3">
