@@ -23,5 +23,5 @@ document.head.appendChild(themeLink);
 
 // Set initial theme based on localStorage
 const initialTheme = localStorage.getItem('theme') || 'light';
-themeLink.setAttribute('href', initialTheme === 'light' ? '/src/renderer/assets/css/light-theme.css' : '/src/renderer/assets/assets/css/dark-theme.css');
+themeLink.setAttribute('href', initialTheme === 'light' ? '/src/renderer/assets/css/light-theme.css' : '/src/renderer/assets/css/dark-theme.css');
 app.mount('#app')

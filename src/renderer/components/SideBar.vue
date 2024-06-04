@@ -87,7 +87,3 @@ export default {
 
         </div>
 </template>
-  
-  <style scoped>
-  /* Add any component-specific styles here */
-  </style>  
