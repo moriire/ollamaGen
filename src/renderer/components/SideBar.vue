@@ -65,8 +65,8 @@ export default {
                   </div>
 
                   <div class="col-lg-12 my-2">
-                    <SliderControl v-model="params.modelParams.top_p" label="Top_p" :min="0" :max="1.0" :step="0.05"
-                      @change="params.changeModelParams" :caliber="params.modelParams.top_p" />
+                    <SliderControl  label="Top_p" :min="0" :max="1.0" :step="0.05"
+                      @change="params.changeModelParams" :caliber="params.top_p" />
                   </div>
 
                   <div class="col-lg-12 my-2">

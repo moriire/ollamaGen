@@ -61,7 +61,7 @@ onMounted(()=>{
    <div class="row justify-content-center .align-items-center mt-4">
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mx-3 my-2">
     <h2 class="text-warning">
-      Pull Model {{  params.selectedModel }}
+      Pull Model {{  params.selectedModel }} {{  params.top_p }}
     </h2>
     <div class="form-group mb-3 input-group-text">
       <span class="spinner-border spinner-border-sm" aria-hidden="true" v-show="disable">
