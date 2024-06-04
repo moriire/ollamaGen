@@ -25,11 +25,11 @@ For further details about ollama, please visit [Ollama's official website](https
 
 Download the latest build of ollamaGen for your operating system:
 
-- [Windows](#)
+- [Windows](https://github.com/moriire/ollamaGen/releases/download/untagged-d098948da921e233e9db/ollamaGen-0.0.2.Setup.exe)
 - [Linux](#)
-- [Mac](#)
-
-(Note: Replace `#` with the actual download links once they are available.)
+  - [RPM](#)
+  - [DEB](#)
+- [Mac](https://github.com/moriire/ollamaGen/releases/download/untagged-d098948da921e233e9db/ollamaGen-darwin-arm64-0.0.2.zip)
 
 ## Usage
 
