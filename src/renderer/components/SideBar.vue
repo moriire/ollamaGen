@@ -40,12 +40,11 @@ export default {
          
           <div class="col-lg-12 my-2">
             <div class="d-flex justify-content-between">
-              <input type="radio" class="btn-check" v-model="gen.resMode" value="batch" id="option1" autocomplete="off">
-              <label class="btn btn-outline-warning" for="option1">Batch</label>
-
               <input type="radio" class="btn-check" v-model="gen.resMode" value="stream" id="option2"
                 autocomplete="off">
               <label class="btn btn-outline-warning" for="option2">Stream</label>
+              <input type="radio" class="btn-check" v-model="gen.resMode" value="batch" id="option1" autocomplete="off">
+              <label class="btn btn-outline-warning" for="option1">Batch</label>
             </div>
             
             <hr class="text-white">
@@ -66,7 +65,7 @@ export default {
 
                   <div class="col-lg-12 my-2">
                     <SliderControl  label="Top_p" :min="0" :max="1.0" :step="0.05"
-                      @change="params.changeModelParams" :caliber="params.top_p" />
+                      @change="params.changeModelParams" :caliber="params.modelParams.top_p" />
                   </div>
 
                   <div class="col-lg-12 my-2">

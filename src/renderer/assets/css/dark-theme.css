@@ -5,11 +5,8 @@ body {
 div.offcolor{
   background-color: var(--bs-dark);
 }
-div#system{
+div#user, div#system{
     color: var(--bs-dark) !important;
-}
-div#user{
-    color: var(--bs--dark) !important;
 }
 
 input[type="range"] {

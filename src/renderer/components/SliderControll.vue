@@ -17,7 +17,7 @@ const { min, max, step, modelValue } = defineProps({
   },
   modelValue: {
     type: Number,
-    default: 10,
+    default: 0,
   },
   label: {
     type: [String, Boolean],
