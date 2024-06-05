@@ -26,12 +26,12 @@ For further details about ollama, please visit [Ollama's official website](https
 Download the latest build of ollamaGen for your operating system:
 
 - Windows
-  - [Windows executable](https://github.com/moriire/ollamaGen/releases/download/v0.0.4/ollamaGen-0.0.4.Setup.exe)
+  - [Windows executable](https://github.com/moriire/ollamaGen/releases/download/v0.0.5/ollamaGen-0.0.5.Setup.exe)
 - Linux
-  - [RPM](https://github.com/moriire/ollamaGen/releases/download/v0.0.4/ollamaGen-0.0.4-1.x86_64.rpm)
-  - [DEB](https://github.com/moriire/ollamaGen/releases/download/v0.0.4/ollamagen_0.0.4_amd64.deb)
+  - [RPM](https://github.com/moriire/ollamaGen/releases/download/v0.0.5/ollamaGen-0.0.5-1.x86_64.rpm)
+  - [DEB](https://github.com/moriire/ollamaGen/releases/download/v0.0.5/ollamagen_0.0.5_amd64.deb)
 
-- [Mac](https://github.com/moriire/ollamaGen/releases/download/v0.0.4/ollamaGen-darwin-arm64-0.0.4.zip)
+- [Mac](https://github.com/moriire/ollamaGen/releases/download/v0.0.5/ollamaGen-darwin-arm64-0.0.5.zip)
 
 ## Usage
 
