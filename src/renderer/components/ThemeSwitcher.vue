@@ -20,7 +20,7 @@
       },
       updateTheme() {
         const themeLink = document.getElementById('theme-link');
-        themeLink.setAttribute('href', this.theme === 'light' ? 'src/renderer/assets/css/light-theme.css' : 'src/renderer/assets/css/dark-theme.css');
+        themeLink.setAttribute('href', this.theme === 'light' ? '/src/renderer/assets/css/light-theme.css' : '/src/renderer/assets/css/dark-theme.css');
       },
     },
     mounted() {
