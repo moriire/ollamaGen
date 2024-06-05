@@ -5,7 +5,7 @@ export const useVoiceSettingsStore = defineStore('voice', () => {
    
  //model parameter settings
 
- const temperature = computed(() => getParam('modelParams', 'temperature') || 0.7)
+ const temperature = computed(() => getParam('modelparams', 'temperature') || 0.7)
  const top_p = computed(() => getParam('modelparams', 'top_p') || 1)
  const top_k = computed(() => getParam('modelparams', 'top_k') || 1)
  const num_ctx = computed(() => getParam('modelparams', 'num_ctx'))
@@ -22,28 +22,28 @@ export const useVoiceSettingsStore = defineStore('voice', () => {
   const voiceParams = reactive({ vol: volume.value, rate: rate.value, pitch: pitch.value})
 
  //Model settings
-const initModel = localStorage.getItem('model') || 'Choose Model';
+const initModel =window.localStorage.getItem('model') || 'Choose Model';
 const selectedModel = ref(initModel);
 
  const selectModel = ()=>{
   window.alert(selectedModel.value)
-  localStorage.setItem('model', selectedModel.value)
+ window.localStorage.setItem('model', selectedModel.value)
 }
  //end model settings
   const changeVoiceParams = () => {
-    localStorage.removeItem('voice')
-    localStorage.setItem('voice', JSON.stringify(voiceParams))
+   window.localStorage.removeItem('voice')
+   window.localStorage.setItem('voice', JSON.stringify(voiceParams))
     console.log('params changed')
   }
   const changeModelParams = () => {
-    localStorage.removeItem('modelparams')
-    localStorage.setItem('modelparams', JSON.stringify(modelParams))
+   window.localStorage.removeItem('modelparams')
+   window.localStorage.setItem('modelparams', JSON.stringify(modelParams))
     console.log('params changed')
   }
   
   function getParam(p, q) {
-    if (localStorage.getItem(p)){
-      return JSON.parse(localStorage.getItem(p))[q]
+    if (window.localStorage.getItem(p)){
+      return JSON.parse(window.localStorage.getItem(p))[q]
     }
     return null
   }

@@ -30,8 +30,8 @@ export default {
 
 <template>
 
-  <div class="row justify-content-center .align-items-center" id="main">{{ params.temperature }}
-    <div class="col-lg-10 col-md-10 m-3 text-light .border .border-top border-bottom-0 p-3 fs-3 overflow-y" id="gensys"
+  <div class="row justify-content-center .align-items-center" id="main">
+    <div class="col-lg-10 col-md-10 m-3 text-light border border-0 border-bottom p-3 fs-3 overflow-y" id="gensys"
       v-show="gen.response">
 
       {{ gen.response }}

@@ -12,7 +12,6 @@ export const useGenerateStore = defineStore('generate', () => {
   const prompt = ref("");
   const msg = ref("");
   const response = ref("");
-
   const formatTime = (x) => {
     return moment(x).seconds()
   }
@@ -28,18 +27,13 @@ export const useGenerateStore = defineStore('generate', () => {
       const res = await axios.post(`http://localhost:11434/api/generate`, {
           model: glob.selectedModel,
           prompt: msg.value,
-          stream: true,
-          options: {
-            temperature: glob.modelParams.temperature,
-            top_k: glob.modelParams.top_k,
-            n_ctx: glob.modelParams.n_ctx,
-            seed: glob.modelParams.seed
-          }
+          stream: false,
+          options: glob.modelParams
         },
         { signal }
       )
       console.log(res.data)
-      //total_duration.value = res.data.context.length / formatTime(res.data.eval_duration);
+      total_duration.value = res.data.context.length / formatTime(res.data.eval_duration);
       //response.value = res.data.message.content
       response.value = res.data.response
     } catch (errors) {
@@ -67,10 +61,7 @@ export const useGenerateStore = defineStore('generate', () => {
           'model': glob.selectedModel,
           "prompt": msg.value,
           "stream": true,
-          "options": {
-            "seed": glob.modelParams.seed,
-            "temperature": glob.modelParams.temperature,
-          },
+          "options": glob.modelParams
         }),
         signal
       })
@@ -112,7 +103,7 @@ export const useGenerateStore = defineStore('generate', () => {
   const resMode = ref("stream");
   const getChat = () => {
     if (resMode.value === 'stream') {
-      console.log(resMode.value)
+      console.log(resMode)
       return streamMode()
     } else {
       return batchMode()

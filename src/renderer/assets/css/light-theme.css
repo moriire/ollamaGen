@@ -5,8 +5,8 @@ body, div.sidebar, div.main{
 div.offcolor{
   background-color: var(--bs-light);
 }
-a.nav-link {
-    color: var(--bs-dark);
+div#main div.text-light, a.nav-link {
+    color: var(--bs-dark) !important;
 }
 hr{
     border-color: var(--bs-dark);
