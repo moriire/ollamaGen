@@ -5,26 +5,21 @@
       </div>
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        theme: localStorage.getItem('theme') || 'light',
+  <script setup>
+import { onMounted, ref } from 'vue';
+let theme = ref(localStorage.getItem('theme') || 'light');
+const  toggleTheme = () => {
+theme = theme.value === 'light' ? 'dark' : 'light';
+        localStorage.setItem('theme', theme.value);
+        updateTheme();
       };
-    },
-    methods: {
-      toggleTheme() {
-        this.theme = this.theme === 'light' ? 'dark' : 'light';
-        localStorage.setItem('theme', this.theme);
-        this.updateTheme();
-      },
-      updateTheme() {
-        const themeLink = document.getElementById('theme-link');
-        themeLink.setAttribute('href', this.theme === 'light' ? '/src/renderer/assets/css/light-theme.css' : '/src/renderer/assets/css/dark-theme.css');
-      },
-    },
-    mounted() {
-      this.updateTheme();
-    },
+   const updateTheme = () => {
+    document.documentElement.setAttribute('data-theme', theme.value)
+    window.localStorage.setItem('theme', theme.value)
   };
+ 
+onMounted(()=>{
+  updateTheme()
+})
+    
   </script>
