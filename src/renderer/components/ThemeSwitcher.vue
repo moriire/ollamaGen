@@ -7,19 +7,16 @@
   
   <script setup>
 import { onMounted, ref } from 'vue';
-let theme = ref(localStorage.getItem('theme') || 'light');
+var theme = ref(window.localStorage.getItem('theme') || 'light');
 const  toggleTheme = () => {
-theme = theme.value === 'light' ? 'dark' : 'light';
-        localStorage.setItem('theme', theme.value);
+        theme.value = theme.value === 'light' ? 'dark' : 'light';
+        window.localStorage.setItem('theme', theme.value);
+        document.documentElement.setAttribute('data-bs-theme', theme.value)
         updateTheme();
+        console.log(window.localStorage.getItem('theme'))
       };
    const updateTheme = () => {
-    document.documentElement.setAttribute('data-theme', theme.value)
-    window.localStorage.setItem('theme', theme.value)
+    theme.value = window.localStorage.getItem('theme')
   };
- 
-onMounted(()=>{
-  updateTheme()
-})
-    
+  
   </script>

@@ -15,8 +15,5 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-
-document.documentElement.setAttribute('data-theme', theme.value)
-window.localStorage.setItem('theme', theme.value)
-//themeLink.setAttribute('href', initialTheme === 'light' ? '/src/renderer/assets/css/light-theme.css' : '/src/renderer/assets/css/light-theme.css' );
+document.documentElement.setAttribute('data-bs-theme', theme)
 app.mount('#app')
