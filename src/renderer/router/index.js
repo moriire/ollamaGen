@@ -1,7 +1,4 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-//import SettingsView from '../views/SettingsView.vue'
-import ModelsView from '../views/ModelsView.vue'
-//import VoiceView from '../views/VoiceView.vue'
 const router = createRouter({
   linkActiveClass: 'active',
   linkExactActiveClass: 'active',
