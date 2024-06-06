@@ -1,11 +1,11 @@
 {
   "name": "ollamaGen",
   "productName": "ollamaGen",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Run your favorite LLM and chat privately",
   "main": ".vite/build/main.js",
   "scripts": {
-    "start": "yarn electron-forge start",
+    "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
