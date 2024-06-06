@@ -18,5 +18,7 @@ const  toggleTheme = () => {
    const updateTheme = () => {
     theme.value = window.localStorage.getItem('theme')
   };
-  
+ onMounted(()=>{
+  document.documentElement.setAttribute('data-bs-theme', theme.value)
+ })
   </script>
