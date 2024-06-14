@@ -86,3 +86,11 @@ export default {
 
         </div>
 </template>
+<style>
+@media (prefers-color-scheme: dark) {
+  div .sidebar {
+    color: var(--bs-primary-text-emphasis);
+    background-color: red !important;
+  }
+}
+</style>

@@ -33,7 +33,10 @@ export default {
   <div class="row justify-content-center .align-items-center" id="main">
     <div class="col-lg-10 col-md-10 m-3 text-light border border-0 border-bottom p-3 fs-3 overflow-y" id="gensys"
       v-show="gen.response">
+      Prompt:<br>
+      {{ gen.msg }}<br><br>
 
+      Response:<br>
       {{ gen.response }}
 
     </div>
@@ -60,7 +63,7 @@ export default {
           </button>
         </div>
         <div class="col-4">
-          <h2 class="text-light text-end" v-show="gen.response">
+          <h2 class="text-light text-end" v-show="gen.response" v-if="gen.resMode=='batch'">
             {{ gen.total_duration.toFixed(2) }} T/s
           </h2>
         </div>

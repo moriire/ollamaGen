@@ -79,8 +79,10 @@ export default {
 </template>
 
 <style>
+
+
 div.cont {
-  background-color: black;
+  /*background-color: black;*/
   height: 100vh;
 }
 
