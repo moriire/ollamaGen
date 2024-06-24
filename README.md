@@ -1,61 +1,85 @@
-# ollamaGen
+# OllamaGen - Your Desktop Client for Ollama
 
-**ollamaGen** is a cross-platform desktop application designed for chatting with large language models locally and offline. Utilizing **ollama** as its backend, ollamaGen allows users to seamlessly interact with advanced AI models like Llama 2, ensuring privacy and accessibility without the need for an internet connection.
+Welcome to **OllamaGen**! This desktop client is designed to harness the power of **Ollama**, an open-source project that allows you to run Large Language Models (LLMs) on your local machine with ease. With OllamaGen, you can generate content and chat with your favorite LLMs, making it an indispensable tool for writers, developers, and AI enthusiasts alike.
 
 ## Features
 
-- **Cross-Platform:** Compatible with Windows, Linux, and macOS.
 - **Offline Capability:** No internet connection required after initial setup.
-- **User-Friendly Interface:** Simple and intuitive design for easy interaction with AI models.
-- **Powered by Ollama:** Leverages the advanced capabilities of ollama for running large language models locally.
+- **Content Generation**: Effortlessly create high-quality text using the powerful LLMs provided by Ollama.
+- **Interactive Chat**: Engage in conversations with LLMs to brainstorm ideas, get answers, or simply have fun.
+- **Text-to-Speech**: Have the responses read out loud to you, making it easier to multitask or simply enjoy a more interactive experience.
+- **Dual Themes**: Choose between dark and light themes to suit your visual preference and reduce eye strain.
+- **Cross-Platform Support**: Available for Windows, Linux, and Mac.
+
+## Screenshots
+
+### Generation
+![Generation](img/generation.png)
+
+### Chat
+![Chat](img/dark.png)
+
+
+### Light Theme
+![Light Theme](img/light.png)
+
 
 ## Installation
 
-### Step 1: Install Ollama
+To get started with OllamaGen, you first need to install Ollama. Download Ollama for your platform from the following link: [Download Ollama](https://ollama.com/download).
 
-Before using ollamaGen, you need to install ollama. Open your OS terminal and run the following command:
+Once you have Ollama installed, download and install OllamaGen for your platform:
 
-```sh
-curl -fsSL https://ollama.com/install.sh | sh
-```
+- **Windows**: [Download OllamaGen for Windows](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamaGen-0.1.3.Setup.exe)
+- **Linux**: [Download OllamaGen for Linux(DEB)](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamagen_0.1.3_amd64.deb)
+- **Linux**: [Download OllamaGen for Linux(RPM)](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamaGen-0.1.3-1.x86_64.rpm)
+- **Mac**: [Download OllamaGen for Mac](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamaGen-darwin-arm64-0.1.3.zip)
 
-For further details about ollama, please visit [Ollama's official website](https://www.ollama.com).
 
-### Step 2: Download ollamaGen
+## Getting Started
 
-Download the latest build of ollamaGen for your operating system:
+1. **Install Ollama**: Ensure you have Ollama installed on your machine by visiting [Ollama Download Page](https://ollama.com/download).
+2. **Download OllamaGen**: Select the appropriate download link for your operating system and follow the installation instructions.
+3. **Launch OllamaGen**: Open OllamaGen and start generating content or chatting with your LLM of choice.
 
-- Windows
-  - [Windows executable](https://github.com/moriire/ollamaGen/releases/download/v0.0.7/ollamaGen-0.0.7.Setup.exe)
-- Linux
-  - [RPM](https://github.com/moriire/ollamaGen/releases/download/v0.0.7/ollamaGen-0.0.7-1.x86_64.rpm)
-  - [DEB](https://github.com/moriire/ollamaGen/releases/download/v0.0.7/ollamagen_0.0.7_amd64.deb)
-
-- [Mac](https://github.com/moriire/ollamaGen/releases/download/v0.0.7/ollamaGen-darwin-arm64-0.0.7.zip)
 
 ## Usage
 
-Once ollama is installed and ollamaGen is downloaded, follow these steps to start chatting with large language models:
+### Generating Content
+1. Select the **Generation** tab.
+2. Enter your prompt or topic.
+3. Click **Generate** to receive your content.
 
-1. **Launch ollamaGen:** Open the downloaded application file for your OS.
-2. **Setup:** Follow the on-screen instructions to complete the initial setup.
-3. **Start Chatting:** Begin interacting with the AI model through the user-friendly interface.
+
+### Chatting with LLMs
+1. Select the **Chat** tab.
+2. Type your message or question.
+3. Hit **Send** and await the response.
+
+
+### Text-to-Speech
+- After receiving a generated response or chat reply, click on the **Text-to-Speech** button to have it read out loud.
+
+
+### Switching Themes
+- Go to the **top of the menu bar**.
+- Toggle between **Dark Theme** and **Light Theme** to suit your preference.
+
 
 ## Contributing
-We welcome contributions from the community! To contribute:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature-name`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/your-feature-name`).
-5. Open a Pull Request.
+
+OllamaGen is an open-source project, and we welcome contributions from the community. If you'd like to contribute, please fork the repository and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
+
+
+## Feedback and Support
+
+We value your feedback! If you encounter any issues or have suggestions for improvement, please reach out to our support team at [ibmabdulsalam@gmail.com](mailto:ibmabdulsalam@gmail.com).
+
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Contact
-For any questions or suggestions, feel free to open an issue or contact us at <ibmabdulsalam@gmail.com>
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-Happy chatting with ollamaGen! 🚀
+Thank you for choosing OllamaGen! I hope you enjoy using it. Happy generating and chatting!
