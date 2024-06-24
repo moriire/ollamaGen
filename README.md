@@ -32,6 +32,7 @@ Once you have Ollama installed, download and install OllamaGen for your platform
 
 - **Windows**: [Download OllamaGen for Windows](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamaGen-0.1.3.Setup.exe)
 - **Linux**: [Download OllamaGen for Linux(DEB)](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamagen_0.1.3_amd64.deb)
+- **Linux**: [Download OllamaGen for Linux(AppImage)](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamaGen-0.1.3.AppImage)
 - **Linux**: [Download OllamaGen for Linux(RPM)](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamaGen-0.1.3-1.x86_64.rpm)
 - **Mac**: [Download OllamaGen for Mac](https://github.com/moriire/ollamaGen/releases/download/v0.1.3/ollamaGen-darwin-arm64-0.1.3.zip)
 
